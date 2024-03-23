@@ -9,15 +9,42 @@ import javafx.scene.layout.BorderPane;
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
-		try {
-			BorderPane root = new BorderPane();
-			Scene scene = new Scene(root,400,400);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setScene(scene);
-			primaryStage.show();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+	    //Home page
+	    
+	    
+	        //view assets button
+	    
+	        //add new asset button
+	    
+	        //view categories button
+	    
+	        //add new category button
+	            //This button will lead to a new stage/page
+	    
+	        //Add icon image
+	        
+	    //Add new category page
+	        //Category name textfield
+	            //error if left empty after pressing save
+	    
+	    
+	        //Category Description textfield
+	            //error if left empty after pressing save
+	    
+	        //save button
+	            //When pressed, will close this page and lead back to homepage
+	    
+	        //cancel button
+	            
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+		
 	}
 	
 	public static void main(String[] args) {
