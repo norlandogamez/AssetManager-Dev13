@@ -8,6 +8,7 @@
 package application;
 	
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -16,8 +17,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
+import javafx.scene.layout.VBox;
 
 public class Main extends Application {
 	@Override
@@ -47,7 +50,7 @@ public class Main extends Application {
         primaryStage.show();
 	
         // Add new category page
-        FlowPane root2 = new FlowPane();
+        VBox root2 = new VBox();
         // Category Name text field
         TextField category_name = new TextField();
     
@@ -65,6 +68,7 @@ public class Main extends Application {
         
         // Title and labels
         Label add_category_title = new Label(" Add New Category");
+        
         Label catname_label = new Label("Category Name:");
         Label locname_label = new Label("Location Name:");
         Label locdesc_label = new Label("Location Description:");
@@ -75,6 +79,13 @@ public class Main extends Application {
         
         secondStage.setScene(secondScene);
         secondStage.setTitle("Add New Category");
+        
+        root2.setAlignment(Pos.CENTER);
+        
+        
+
+        
+        
         
         // Add New Category button opens Add Category page
         add_new_category.setOnAction(e -> {
