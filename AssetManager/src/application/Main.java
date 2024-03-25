@@ -5,6 +5,7 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
@@ -41,19 +42,37 @@ public class Main extends Application {
 	//Add new category page
         
         
-        add_new_category.setOnAction(e->{
-            
-            StackPane root2 = new StackPane();
+        FlowPane root2 = new FlowPane();
+        TextField category_name = new TextField();
+        TextField location_name= new TextField();
+        TextField location_desc = new TextField();
+        Button add_category_save = new Button("Save");
+        Button add_category_cancel = new Button("Cancel");
+        Label add_category_title = new Label("Add New Category");
+        Label catname_label = new Label("Category Name:");
+        Label locname_label = new Label("Location Name:");
+        Label locdesc_label = new Label("Location Description:");
         
-            Label label = new Label("Add New category page");
-            root2.getChildren().add(label);
-            Scene secondScene = new Scene(root2, 500, 500);
-            Stage secondStage = new Stage();
+        root2.getChildren().addAll(add_category_title, catname_label, category_name, locname_label, location_name, locdesc_label, location_desc, add_category_save, add_category_cancel);
+        Scene secondScene = new Scene(root2, 500, 500);
+        Stage secondStage = new Stage();
+        
+        secondStage.setScene(secondScene);
+        secondStage.setTitle("Add New Category");
+        
+        // Opens Add Category page
+        add_new_category.setOnAction(e -> {
+            secondStage.show(); });
             
-            secondStage.setScene(secondScene);
-            secondStage.setTitle("Add New Category Page");
-            secondStage.show();
-        });
+        // Closes Add Category page
+        add_category_cancel.setOnAction(e -> {
+            ((Stage) (add_category_cancel.getScene().getWindow())).close(); });
+        
+        add_category_save.setOnAction(e -> {
+        	if (add_category_title.getText() == null || add_category_title.getText().trim().isEmpty() || location_name.getText() == null || location_name.getText().trim().isEmpty()) {
+        	     return;
+        	}
+            ((Stage) (add_category_save.getScene().getWindow())).close(); });
         
         //Category name textfield
             //error if left empty after pressing save
