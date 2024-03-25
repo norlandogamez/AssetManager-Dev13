@@ -1,3 +1,10 @@
+/*
+ * CS 151 Section 6
+ * Project: Track It!
+ * Dev Team 13: Henry Choy, Dylan Huang, & Norlando Gamez
+ * 
+ */
+
 package application;
 	
 import javafx.application.Application;
@@ -8,12 +15,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 
-// If you can see this, my push worked! - Dylan
-		
-		
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
@@ -43,10 +48,9 @@ public class Main extends Application {
 	
         // Add new category page
         FlowPane root2 = new FlowPane();
-        
         // Category Name text field
         TextField category_name = new TextField();
-        
+    
         // Location Name text field
         TextField location_name= new TextField();
         
@@ -60,7 +64,7 @@ public class Main extends Application {
         Button add_category_cancel = new Button("Cancel");
         
         // Title and labels
-        Label add_category_title = new Label("Add New Category");
+        Label add_category_title = new Label(" Add New Category");
         Label catname_label = new Label("Category Name:");
         Label locname_label = new Label("Location Name:");
         Label locdesc_label = new Label("Location Description:");
