@@ -12,8 +12,11 @@ import javafx.geometry.Pos;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
@@ -26,7 +29,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 	//Home page
-	    FlowPane root = new FlowPane();
+	    GridPane root = new GridPane();
 	    
         // View Assets button
 	    Button view_assets = new Button("View Assets");
@@ -41,8 +44,23 @@ public class Main extends Application {
         // This button will lead to a new stage/page
         Button add_new_category = new Button("Add New Category");
         
+        ButtonBar btnBar = new ButtonBar();
+        
+        btnBar.getButtons().addAll(view_assets, new_asset, view_categories, add_new_category);
+        
         // Add icon image
-        root.getChildren().addAll(view_assets, new_asset, view_categories, add_new_category);
+//        root.getChildren().addAll(view_assets, new_asset, view_categories, add_new_category);
+//        ImageView img1 = new ImageView(new Image(getClass().getResource()));
+        
+        //Grid positioning
+        root.add(view_assets, 0, 0, 1, 1);
+        root.add(new_asset, 1, 0, 1, 1);
+        root.add(view_categories, 0, 1, 1, 1);
+        root.add(add_new_category, 1, 1, 1, 1);
+        root.setHgap(100);
+        root.setVgap(40);
+        
+        root.setAlignment(Pos.CENTER);
         
         Scene scene = new Scene(root, 500, 500);
         primaryStage.setScene(scene);
