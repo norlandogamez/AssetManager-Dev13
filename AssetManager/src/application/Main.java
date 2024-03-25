@@ -29,7 +29,6 @@ public class Main extends Application {
         Button add_new_category = new Button("Add New Category");
         //Add icon image
 	    
-        
         root.getChildren().addAll(view_assets, new_asset, view_categories, add_new_category);
         
         Scene scene = new Scene(root, 500, 500);
@@ -66,14 +65,6 @@ public class Main extends Application {
 //        //cancel button
 //        Button cancel = new Button("Cancel");
 	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-		
 	}
 	
 	public static void main(String[] args) {
