@@ -31,7 +31,7 @@ import java.io.FileReader;
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
-	//Home page
+		//Home page
 	    
 	    //Creates GridPane
 	    GridPane root = new GridPane();
@@ -131,7 +131,8 @@ public class Main extends Application {
         
         // Save button checks to see if category name and location name are filled, then closes page if so
         add_category_save.setOnAction(e -> {
-        	writeToFile(category_name.getText());
+        	String catName = category_name.getText();
+        	writeToFile(catName, "category.txt");
         	if (category_name.getText() == null || category_name.getText().trim().isEmpty()){
         	     return;
         	}
@@ -176,6 +177,8 @@ public class Main extends Application {
 	    });
 	    
 	    save.setOnAction(e -> {
+	    	String locName = locationName_field.getText();
+        	writeToFile(locName, "location.txt");
             if (locationName_field.getText() == null || locationName_field.getText().trim().isEmpty()){
                  return;
             }
@@ -185,16 +188,16 @@ public class Main extends Application {
 	    
 	}
 	
-	public static String writeToFile (String info) {
+	public static String writeToFile (String info, String txtName) {
 		try {
-			
-			BufferedWriter fw = new BufferedWriter (new FileWriter("input.txt"));
-			fw.write(info + "\n");
+			FileWriter fw = new FileWriter(txtName, true);
+			BufferedWriter bw = new BufferedWriter (fw);
+			bw.write(info + "\n");
 			System.out.println(info);
 			
 			System.out.print("File was succesfully written");
 			
-			fw.close();
+			bw.close();
 			
 		}
 		catch (IOException e) {
@@ -212,7 +215,7 @@ public class Main extends Application {
 			System.out.println("Text data in file: ");
 			while ((data = inputData.readLine()) != null) {
 				//data = in.readLine();
-				System.out.println(data);
+				System.out.println("\nThis data was read: " + data + "\n");
 			};
 			inputData.close();
 		} catch (IOException e) {
@@ -221,11 +224,12 @@ public class Main extends Application {
 		return fileName;
 	}
 	public static void main(String[] args) throws IOException {
-		
-		String fName = "input.txt";
+		/*
+		String fName = "category.txt";
 		readFile(fName);
-		String ex = "Category";
-		//writeToFile(ex);
+		String fName2 = "location.txt";
+		readFile(fName2);
+		*/
 		launch(args);
 	}
 }
