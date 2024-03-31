@@ -21,6 +21,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 
 public class Main extends Application {
 	@Override
@@ -125,12 +131,15 @@ public class Main extends Application {
         
         // Save button checks to see if category name and location name are filled, then closes page if so
         add_category_save.setOnAction(e -> {
+        	writeToFile(category_name.getText());
         	if (category_name.getText() == null || category_name.getText().trim().isEmpty()){
         	     return;
         	}
             ((Stage) (add_category_save.getScene().getWindow())).close(); });
 	    
 	}
+	
+	
 	
 	
 	public void DefineNewLocation() {
@@ -176,7 +185,47 @@ public class Main extends Application {
 	    
 	}
 	
-	public static void main(String[] args) {
+	public static String writeToFile (String info) {
+		try {
+			
+			BufferedWriter fw = new BufferedWriter (new FileWriter("input.txt"));
+			fw.write(info + "\n");
+			System.out.println(info);
+			
+			System.out.print("File was succesfully written");
+			
+			fw.close();
+			
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+		return info;
+	}
+	
+	public static String readFile (String fileName) throws IOException {
+		try {
+			FileReader fileObj = new FileReader (fileName);
+			String data = "";
+			BufferedReader inputData = new BufferedReader(fileObj);
+			//String test = "sdsds";
+			System.out.println("Text data in file: ");
+			while ((data = inputData.readLine()) != null) {
+				//data = in.readLine();
+				System.out.println(data);
+			};
+			inputData.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return fileName;
+	}
+	public static void main(String[] args) throws IOException {
+		
+		String fName = "input.txt";
+		readFile(fName);
+		String ex = "Category";
+		//writeToFile(ex);
 		launch(args);
 	}
 }
