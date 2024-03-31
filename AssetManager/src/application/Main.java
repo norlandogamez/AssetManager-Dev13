@@ -179,10 +179,14 @@ public class Main extends Application {
 	    
 	    save.setOnAction(e -> {
 	    	String locName = locationName_field.getText();
+	    	String locDesc = locationDesc_field.getText();
             if (locationName_field.getText() == null || locationName_field.getText().trim().isEmpty()){
                  return;
             } else {
             	writeToFile(locName, "location.txt");
+            	 if (locationDesc_field.getText() != null || !locationName_field.getText().trim().isEmpty()) {
+            		 writeToFile(locDesc, "locationDesc.txt");
+                }
             }
             ((Stage) (save.getScene().getWindow())).close(); });
         
