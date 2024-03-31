@@ -189,33 +189,35 @@ public class Main extends Application {
         
 	}
 	
+	// Writes a passed String with a newline to each text file
 	public static String writeToFile (String info, String txtName) {
 		try {
 			FileWriter fw = new FileWriter(txtName, true);
 			BufferedWriter bw = new BufferedWriter (fw);
 			bw.write(info + "\n");
-			System.out.println(info + "\n");
-			System.out.print("File was succesfully written");
-			bw.close();
+			bw.close(); // close the BufferWriter object
 		}
-		catch (IOException e) {
+		catch (IOException e) { //catches an IOexception error if the file is corrupt 
 			e.printStackTrace();
 		}
 		return info;
 	}
 	
-	public static String readFile (String fileName) throws IOException {
+	// Reads a passed filename and stores each read line into a String
+	public static String readFile (String fileName) throws FileNotFoundException, IOException {
 		try {
 			FileReader fileObj = new FileReader (fileName);
 			String data = "";
 			BufferedReader inputData = new BufferedReader(fileObj);
-			System.out.println("Text data in file: ");
+			//System.out.println("Text data in file: ");
 			while ((data = inputData.readLine()) != null) {
 				//data = in.readLine();
-				System.out.println("\nThis data was read: " + data + "\n");
+				//System.out.println("\nThis data was read: " + data + "\n");
 			};
-			inputData.close();
-		} catch (IOException e) {
+			inputData.close(); //close the BufferReader object
+		} catch (FileNotFoundException f) {  //catch an error if the file is not found
+			System.out.println("Error: File was not found!");
+		} catch (IOException e) { //catch an error if the file is corrupt 
 			e.printStackTrace();
 		}
 		return fileName;
