@@ -132,10 +132,11 @@ public class Main extends Application {
         // Save button checks to see if category name and location name are filled, then closes page if so
         add_category_save.setOnAction(e -> {
         	String catName = category_name.getText();
-        	writeToFile(catName, "category.txt");
         	if (category_name.getText() == null || category_name.getText().trim().isEmpty()){
         	     return;
-        	}
+        	} else {
+        		writeToFile(catName, "category.txt");
+            }
             ((Stage) (add_category_save.getScene().getWindow())).close(); });
 	    
 	}
@@ -178,9 +179,10 @@ public class Main extends Application {
 	    
 	    save.setOnAction(e -> {
 	    	String locName = locationName_field.getText();
-        	writeToFile(locName, "location.txt");
             if (locationName_field.getText() == null || locationName_field.getText().trim().isEmpty()){
                  return;
+            } else {
+            	writeToFile(locName, "location.txt");
             }
             ((Stage) (save.getScene().getWindow())).close(); });
         
@@ -193,7 +195,7 @@ public class Main extends Application {
 			FileWriter fw = new FileWriter(txtName, true);
 			BufferedWriter bw = new BufferedWriter (fw);
 			bw.write(info + "\n");
-			System.out.println(info);
+			System.out.println(info + "\n");
 			
 			System.out.print("File was succesfully written");
 			
