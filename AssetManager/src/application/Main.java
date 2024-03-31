@@ -122,9 +122,9 @@ public class Main extends Application {
             ((Stage) (add_category_cancel.getScene().getWindow())).close(); });
         
         // Save button checks to see if category name is filled out, then closes page if so
-        // If the input isn't empty, it will save the location Name and the optional location details to .txt files
         add_category_save.setOnAction(e -> {
         	String catName = category_name.getText();
+        	// If the input isn't empty, it will save category name details to .txt files
         	if (category_name.getText() == null || category_name.getText().trim().isEmpty()){
         	     return;
         	} else {
@@ -173,15 +173,17 @@ public class Main extends Application {
 	    });
 	    
 	    // Save button checks to see if location name is filled out, then closes page if so
-	    // If the input isn't empty, it will save the location Name and the optional location details to .txt files
 	    save.setOnAction(e -> {
+	    	//Save the input text to local Strings
 	    	String locName = locationName_field.getText();
 	    	String locDesc = locationDesc_field.getText();
+	    	// If the input isn't empty, it will save the location Name details to a .txt file
             if (locationName_field.getText() == null || locationName_field.getText().trim().isEmpty()){
                  return;
             } else {
             	writeToFile(locName, "location.txt");
-            	 if (locationDesc_field.getText() != null || !locationName_field.getText().trim().isEmpty()) {
+            	 // If the input isn't empty, it will save the location description details to a .txt file
+            	 if (locationDesc_field.getText() != null || !locationDesc_field.getText().trim().isEmpty()) {
             		 writeToFile(locDesc, "locationDesc.txt");
                 }
             }
@@ -191,14 +193,14 @@ public class Main extends Application {
 	
 	// Writes a passed String with a newline to each text file
 	public static String writeToFile (String info, String txtName) {
-		try {
-			FileWriter fw = new FileWriter(txtName, true);
-			BufferedWriter bw = new BufferedWriter (fw);
+		try { //Declare a FileWriter stream to use the text file as an input & append each line
+			FileWriter fw = new FileWriter(txtName, true); 
+			BufferedWriter bw = new BufferedWriter (fw); // Declare a BufferedWriter stream to use the FileWriter object as an input
 			bw.write(info + "\n");
 			bw.close(); // close the BufferWriter object
 		}
-		catch (IOException e) { //catches an IOexception error if the file is corrupt 
-			e.printStackTrace();
+		catch (IOException e) { //catches an error if the file is corrupt 
+			e.printStackTrace(); //print an IOexception error statement
 		}
 		return info;
 	}
@@ -206,24 +208,27 @@ public class Main extends Application {
 	// Reads a passed filename and stores each read line into a String
 	public static String readFile (String fileName) throws FileNotFoundException, IOException {
 		try {
-			FileReader fileObj = new FileReader (fileName);
-			String data = "";
-			BufferedReader inputData = new BufferedReader(fileObj);
+			FileReader fileObj = new FileReader (fileName); //Declare a FileReader stream that uses the text file as an input
+			String data; //declare the local read in data
+			BufferedReader inputData = new BufferedReader(fileObj); //Declare a BufferedReader stream to use the FileReader object as an input
 			//System.out.println("Text data in file: ");
+			
+			//While each line read in is not null, store it into a String called data
 			while ((data = inputData.readLine()) != null) {
-				//data = in.readLine();
+				//data = inputData.readLine();
 				//System.out.println("\nThis data was read: " + data + "\n");
 			};
 			inputData.close(); //close the BufferReader object
 		} catch (FileNotFoundException f) {  //catch an error if the file is not found
 			System.out.println("Error: File was not found!");
 		} catch (IOException e) { //catch an error if the file is corrupt 
-			e.printStackTrace();
+			e.printStackTrace(); //print an IOexception error statement
 		}
 		return fileName;
 	}
 	
 	public static void main(String[] args) throws IOException {
+		readFile("category.txt");
 		launch(args);
 	}
 }
