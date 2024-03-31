@@ -113,7 +113,6 @@ public class Main extends Application {
             DefineNewLocation();
         });
         
-        
         // Add New Category button, opens Add Category page
         add_new_category.setOnAction(e -> {
             secondStage.show(); });
@@ -221,6 +220,7 @@ public class Main extends Application {
 		}
 		return fileName;
 	}
+	
 	public static void main(String[] args) throws IOException {
 		launch(args);
 	}
