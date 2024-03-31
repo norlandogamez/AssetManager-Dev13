@@ -56,7 +56,6 @@ public class Main extends Application {
         img1.setFitHeight(100);
         img1.setFitWidth(100);
         
-       
         //Grid positioning
         root.add(view_assets, 0, 1, 1, 1);
         root.add(new_asset, 2, 1, 1, 1);
@@ -87,41 +86,35 @@ public class Main extends Application {
         // Cancel button 
         Button add_category_cancel = new Button("Cancel");
         
-        //Labels for textfields
+        // Labels for textfields
         Label catname_label = new Label("Category Name:");
         
-        //Add image for second page
+        // Add image for second page
         Image logo2 = new Image(getClass().getResource("trackit-logo.png").toString());
         ImageView img2 = new ImageView(logo2);
         img2.setFitHeight(100);
         img2.setFitWidth(100);
         
-        
-        //Grab all children for add new category page
+        // Grab all children for add new category page
         root2.getChildren().addAll(img2, catname_label, category_name,add_category_save, add_category_cancel);
         Scene secondScene = new Scene(root2, 500, 500);
         Stage secondStage = new Stage();
         
-        
-        
-        //Setting scene for Add New Category page
+        // Setting scene for Add New Category page
         secondStage.setScene(secondScene);
         secondStage.setTitle("Add New Category");
         
-        
-        //Aligns the VBox to the center and sets the background color
+        // Aligns the VBox to the center and sets the background color
         root2.setAlignment(Pos.CENTER);
         root2.setStyle("-fx-background-color: #9BDDF2");
         
-        
-        
+        // Add New Location button, opens New Location page
         define_new_location.setOnAction(e -> {
             DefineNewLocation();
-            
         });
         
         
-        // Add New Category button opens Add Category page
+        // Add New Category button, opens Add Category page
         add_new_category.setOnAction(e -> {
             secondStage.show(); });
             
@@ -129,7 +122,8 @@ public class Main extends Application {
         add_category_cancel.setOnAction(e -> {
             ((Stage) (add_category_cancel.getScene().getWindow())).close(); });
         
-        // Save button checks to see if category name and location name are filled, then closes page if so
+        // Save button checks to see if category name is filled out, then closes page if so
+        // If the input isn't empty, it will save the location Name and the optional location details to .txt files
         add_category_save.setOnAction(e -> {
         	String catName = category_name.getText();
         	if (category_name.getText() == null || category_name.getText().trim().isEmpty()){
@@ -141,42 +135,46 @@ public class Main extends Application {
 	    
 	}
 	
-	
-	
-	
 	public void DefineNewLocation() {
+        // Add Define New Location Page
 	    VBox locRoot = new VBox();
-	    
+	    // Location Name text field
 	    TextField locationName_field = new TextField(); 
 	    
 	    Label location_label = new Label("Location's name:");
-	    
+	    // Location Description text field
 	    TextField locationDesc_field = new TextField();
 	    
 	    Label locationDesc_label = new Label("Location Description (optional)");
-	    
+	    // Save button
 	    Button save = new Button("Save");
 	    
+	    // Cancel button 
 	    Button cancel = new Button("Cancel");
 	    
-	    locRoot.getChildren().addAll(location_label, locationName_field,locationDesc_label , locationDesc_field,save, cancel);
+	    //Grab all children for the Define New Location page
+	    locRoot.getChildren().addAll(location_label, locationName_field, locationDesc_label, locationDesc_field, save, cancel);
 	    
 	    Scene newScene = new Scene(locRoot, 500, 500);
-	    
 	    Stage newStage = new Stage();
 	    
+	    //Setting scene for the Define New Location page
 	    newStage.setScene(newScene);
 	    newStage.setTitle("New Location");
 	    
+	    //Aligns the VBox to the center and sets the background color
 	    locRoot.setAlignment(Pos.CENTER);
 	    locRoot.setStyle("-fx-background-color: #9BDDF2");
 	    
 	    newStage.show();
 	    
+	    // Cancel button closes New Location page
 	    cancel.setOnAction(e -> {
 	        ((Stage) (cancel.getScene().getWindow())).close(); 
 	    });
 	    
+	    // Save button checks to see if location name is filled out, then closes page if so
+	    // If the input isn't empty, it will save the location Name and the optional location details to .txt files
 	    save.setOnAction(e -> {
 	    	String locName = locationName_field.getText();
 	    	String locDesc = locationDesc_field.getText();
@@ -190,8 +188,6 @@ public class Main extends Application {
             }
             ((Stage) (save.getScene().getWindow())).close(); });
         
-	    
-	    
 	}
 	
 	public static String writeToFile (String info, String txtName) {
@@ -200,11 +196,8 @@ public class Main extends Application {
 			BufferedWriter bw = new BufferedWriter (fw);
 			bw.write(info + "\n");
 			System.out.println(info + "\n");
-			
 			System.out.print("File was succesfully written");
-			
 			bw.close();
-			
 		}
 		catch (IOException e) {
 			e.printStackTrace();
@@ -217,7 +210,6 @@ public class Main extends Application {
 			FileReader fileObj = new FileReader (fileName);
 			String data = "";
 			BufferedReader inputData = new BufferedReader(fileObj);
-			//String test = "sdsds";
 			System.out.println("Text data in file: ");
 			while ((data = inputData.readLine()) != null) {
 				//data = in.readLine();
@@ -230,12 +222,6 @@ public class Main extends Application {
 		return fileName;
 	}
 	public static void main(String[] args) throws IOException {
-		/*
-		String fName = "category.txt";
-		readFile(fName);
-		String fName2 = "location.txt";
-		readFile(fName2);
-		*/
 		launch(args);
 	}
 }
